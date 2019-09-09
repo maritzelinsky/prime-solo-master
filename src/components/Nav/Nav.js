@@ -16,11 +16,14 @@ const Nav = (props) => (
         and call this link 'Login / Register' if they are not */}
         {props.user.id ? 'Home' : 'Login / Register'}
       </Link>
-      {/* Show the link to the info page and the logout button if the user is logged in */}
+      {/* Show the link to the team page, info page and the logout button if the user is logged in */}
       {props.user.id && (
         <>
           <Link className="nav-link" to="/info">
             Info Page
+          </Link>
+          <Link className="nav-link" to="/teams">
+            Teams
           </Link>
           <LogOutButton className="nav-link"/>
         </>
