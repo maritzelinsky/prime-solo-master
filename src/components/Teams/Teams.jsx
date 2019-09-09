@@ -7,8 +7,13 @@ class Teams extends Component {
     }
     render () {
         return (
+            <div>
             <h1>Teams</h1>
-            
+            <p>{JSON.stringify(this.props.state.teamsReducer)}</p>
+            <ul>
+                {this.props.state.teamsReducer && this.props.state.teamsReducer.map(team => <li>{team.name}</li>)}
+            </ul>
+            </div>
         )
     }
 }
