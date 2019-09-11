@@ -13,6 +13,7 @@ CREATE TABLE "teams" (
 	"id" SERIAL PRIMARY KEY,
 	"name" VARCHAR (255) UNIQUE NOT NULL,
 	"contact" VARCHAR (255),
+	"email" VARCHAR (255),
 	"phone_number" BIGINT
 );
 

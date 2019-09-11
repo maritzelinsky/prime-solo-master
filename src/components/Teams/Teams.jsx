@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Button from '@material-ui/core/Button';
 
 class Teams extends Component {
     handleDetailsClick = (id) => {
@@ -19,14 +20,11 @@ class Teams extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    <td>
-                        {/* {this.props.state.teamsReducer && this.props.state.teamsReducer.map(team => <td key={team.name}>{team.name}</td>)} */}
                         {this.props.state.teamsReducer && this.props.state.teamsReducer.map(team => {
                             return (
-                                <tr key={team.name}>{team.name}<button onClick={() => this.handleDetailsClick(team.id)}>more details</button></tr>
+                                <tr key={team.name}>{team.name}<Button varient="contained" color="primary" onClick={() => this.handleDetailsClick(team.id)}>more details</Button></tr>
                             )
                         })}
-                    </td>
                 </tbody>
             </table>
             </div>
