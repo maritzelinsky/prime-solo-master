@@ -16,17 +16,17 @@ class Teams extends Component {
                 <thead>
                     <tr>
                         <th>Team</th>
-                        <th>Contact</th>
-                        <th>Phone Number</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                            {this.props.state.teamsReducer && this.props.state.teamsReducer.map(team => <td key={team.name}>{team.name}</td>)}
-                            {this.props.state.teamsReducer && this.props.state.teamsReducer.map(team => <td key={team.contact}>{team.contact}</td>)}
-                            {this.props.state.teamsReducer && this.props.state.teamsReducer.map(team => <td key={team.phone_number}>{team.phone_number}</td>)}
-                            
-                    </tr>
+                    <td>
+                        {/* {this.props.state.teamsReducer && this.props.state.teamsReducer.map(team => <td key={team.name}>{team.name}</td>)} */}
+                        {this.props.state.teamsReducer && this.props.state.teamsReducer.map(team => {
+                            return (
+                                <tr key={team.name}>{team.name}<button onClick={() => this.handleDetailsClick(team.id)}>more details</button></tr>
+                            )
+                        })}
+                    </td>
                 </tbody>
             </table>
             </div>
