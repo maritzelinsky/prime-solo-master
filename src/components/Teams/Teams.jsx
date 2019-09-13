@@ -4,12 +4,9 @@ import { connect } from 'react-redux';
 
 class Teams extends Component {
     handleDetailsClick = (id) => {
-        this.props.dispatch({
-            type: 'FETCH_DETAILS',
-            payload: id
-        })
         this.props.history.push(`/details/${id}`);
     }
+    
     componentDidMount() {
         this.props.dispatch({ type: 'FETCH_TEAMS' })
     }
