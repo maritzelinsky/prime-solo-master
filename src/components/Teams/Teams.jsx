@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 
 
 class Teams extends Component {
+    componentDidMount() {
+        this.props.dispatch({ type: 'FETCH_TEAMS' })
+    }
+    
     handleDetailsClick = (id) => {
         this.props.history.push(`/details/${id}`);
     }
     
-    componentDidMount() {
-        this.props.dispatch({ type: 'FETCH_TEAMS' })
-    }
     render () {
         return (
             <div>
@@ -23,7 +24,7 @@ class Teams extends Component {
                 <tbody>
                         {this.props.state.teamsReducer && this.props.state.teamsReducer.map(team => {
                             return (
-                                <tr key={team.name}>{team.name}<button varient="contained" color="primary" onClick={() => this.handleDetailsClick(team.id)}>more details</button></tr>
+                                <tr key={team.name}>{team.name}<button onClick={() => this.handleDetailsClick(team.id)}>more details</button></tr>
                             )
                         })}
                 </tbody>
