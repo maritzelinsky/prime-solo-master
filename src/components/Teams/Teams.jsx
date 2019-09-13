@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Button from '@material-ui/core/Button';
+
 
 class Teams extends Component {
     handleDetailsClick = (id) => {
+        this.props.dispatch({
+            type: 'FETCH_DETAILS',
+            payload: id
+        })
         this.props.history.push(`/details/${id}`);
     }
     componentDidMount() {
@@ -22,7 +26,7 @@ class Teams extends Component {
                 <tbody>
                         {this.props.state.teamsReducer && this.props.state.teamsReducer.map(team => {
                             return (
-                                <tr key={team.name}>{team.name}<Button varient="contained" color="primary" onClick={() => this.handleDetailsClick(team.id)}>more details</Button></tr>
+                                <tr key={team.name}>{team.name}<button varient="contained" color="primary" onClick={() => this.handleDetailsClick(team.id)}>more details</button></tr>
                             )
                         })}
                 </tbody>

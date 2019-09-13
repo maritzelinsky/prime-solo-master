@@ -17,6 +17,7 @@ import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import Teams from '../Teams/Teams';
+import TeamDetails from  '../TeamDetails/TeamDetails';
 
 import './App.css';
 
@@ -60,6 +61,11 @@ class App extends Component {
               exact
               path="/teams"
               component={Teams}
+            />
+            <ProtectedRoute
+              exact
+              path="/details/:id"
+              component={TeamDetails}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
