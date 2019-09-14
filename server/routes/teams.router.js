@@ -44,8 +44,22 @@ router.get('/edit/:id', rejectUnauthenticated, (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
-
+router.post('/', rejectUnauthenticated, (req, res) => {
+    newTeamDetails = req.body;
+    const queryText = `INSERT INTO "teams" ("name", "contact", "email", "phone_number") VALUES ($1, $2, $3, $4)`;
+    const queryValues = [
+        newTeamDetails.name,
+        newTeamDetails.contact,
+        newTeamDetails.email,
+        newTeamDetails.phoneNumber,
+    ];
+    pool.query(queryText, queryValues)
+        .then(() => {
+            res.sendStatus(201);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
 });
 
 module.exports = router;

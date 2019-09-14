@@ -11,7 +11,7 @@ function* fetchTeamDetails(action) {
         const response = yield axios.get(`/api/teams/details/${action.payload}`, config);
         console.log('action.payload in fetchTeamDetailsSaga:', action.payload);
         yield put({ type: 'SET_DETAILS', payload: response.data });
-        console.log('TEAM  DETAILS SAGA', response.data)
+        console.log('TEAM DETAILS SAGA', response.data)
     } catch (error) {
         console.log('TeamDetails get request failed', error);
     }

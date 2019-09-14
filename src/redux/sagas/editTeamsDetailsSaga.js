@@ -1,6 +1,10 @@
 import axios from 'axios';
 import { put, takeEvery } from 'redux-saga/effects';
 
+function* teamDetailsSaga() {
+    yield takeEvery('FETCH_DETAILS_TO_EDIT', fetchTeamDetailsEdit);
+}
+
 function* fetchTeamDetailsEdit(action) {
     try {
         const config = {
@@ -16,8 +20,6 @@ function* fetchTeamDetailsEdit(action) {
     }
 }
 
-function* teamDetailsSaga() {
-    yield takeEvery('FETCH_DETAILS_TO_EDIT', fetchTeamDetailsEdit);
-}
+
 
 export default teamDetailsSaga;

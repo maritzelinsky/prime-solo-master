@@ -22,8 +22,8 @@ const Nav = (props) => (
           <Link className="nav-link" to="/teams">
             Teams
           </Link>
-          <Link className="nav-link" to="/addtimeslots">
-            Open
+          <Link className="nav-link" to="/timeslots">
+            Time Slots
           </Link>
           <Link className="nav-link" to="/schedule">
             Schedule

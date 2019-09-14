@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+
+
 class EditTeamDetails extends Component {
+    
+    state = {
+        name: this.props.state.name,
+        contact: this.props.state.contact,
+        email: this.props.state.email,
+        phone_number: this.props.state.email_number
+    }
+
     componentDidMount = (id) => {
         this.props.dispatch({
             type: 'FETCH_DETAILS_TO_EDIT',
@@ -15,6 +25,7 @@ class EditTeamDetails extends Component {
     }
 
     render() {
+        console.log('NAME IN EDIT TEAM DETAILS', this.props.state.name);
         return (
             <div>
                 <table>
@@ -27,11 +38,11 @@ class EditTeamDetails extends Component {
                         {this.props.state.teamsReducer && this.props.state.teamDetailsReducer.map(team => {
                             return (
                                 <td key={team.details}>
-                                    <tr><input placeholder={team.name}/></tr>
-                                    <tr><input placeholder={team.contact}/></tr>
-                                    <tr><input placeholder={team.email}/></tr>
-                                    <tr><input placeholder={team.phone_number}/></tr>
-                                    <button>Save</button>
+                                    <tr><input value={team.name}/></tr>
+                                    <tr><input value={team.contact}/></tr>
+                                    <tr><input value={team.email}/></tr>
+                                    <tr><input value={team.phone_number}/></tr>
+                                    <button>save</button>
                                     <button onClick={() => this.handleCancelClick(team.id)}>cancel</button>
                                 </td>
                             )
