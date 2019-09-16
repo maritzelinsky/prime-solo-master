@@ -23,6 +23,7 @@ class Scheduler extends Component {
         return (
             <div>
                 <h1>Scheduler</h1>
+                <p>{JSON.stringify(this.props.state.schedulerReducer)}</p>
                 <select onChange={(event) => this.handleChange(event)}>
                 {this.props.state.teamsReducer && this.props.state.teamsReducer.map(team => {
                     return (
