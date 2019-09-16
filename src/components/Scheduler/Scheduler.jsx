@@ -4,19 +4,32 @@ import { connect } from 'react-redux';
 class Scheduler extends Component {
     componentDidMount() {
         this.props.dispatch({ type: 'FETCH_TEAMS' });
-        this.props.dispatch({ type: 'FETCH_TIME_SLOTS' });
         this.props.dispatch({ type: 'FETCH_ASSIGNMENTS'});
     }
 
     state = {
         selectedTeam: {
-            name: ''
+            id: ''
         }
     }
 
-    handleChange(event) {
+    handleChange = (event) => {
         console.log(event.target.value)
-        this.setState({name: event.target.value});
+        this.setState({
+            selectedTeam: {
+                id: event.target.value
+            }
+        })
+    }
+
+    handleAssignTeamClick = (id) => {
+        this.props.dispatch ({
+            type: 'ASSIGN_TEAM',
+            payload: {
+                teamId: this.state.selectedTeam.id,
+                timeSlotId: id
+            }
+        })
     }
 
     render () {
@@ -27,7 +40,7 @@ class Scheduler extends Component {
                 <select onChange={(event) => this.handleChange(event)}>
                 {this.props.state.teamsReducer && this.props.state.teamsReducer.map(team => {
                     return (
-                        <option key={team.name}>{team.name}</option>
+                        <option value={team.id} key={team.name}>{team.name}</option>
                         )
                     })}
                 </select>
@@ -44,12 +57,12 @@ class Scheduler extends Component {
                     <tbody>
                         {this.props.state.schedulerReducer.map(assignment => {
                             return (
-                                <tr key={assignment.assignments}>
+                                <tr key={assignment.id}>
                                     <td>{assignment.date}</td>
                                     <td>{assignment.start_time}</td>
                                     <td>{assignment.end_time}</td>
                                     <td>{assignment.name}</td>
-                                    <button>assign team</button>
+                                    <button onClick={() => this.handleAssignTeamClick(assignment.id)}>assign team</button>
                                 </tr>
                             )
                         })}
