@@ -6,6 +6,7 @@ import teamsReducer from './teamsReducer';
 import teamDetailsReducer from './teamDetailsReducer';
 import editTeamDetailsReducer from './editTeamDetailsReducer';
 import timeSlotsReducer from './timeSlotReducer';
+import schedulerReducer from './schedulerReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   teamDetailsReducer,
   editTeamDetailsReducer,
   timeSlotsReducer,
+  schedulerReducer,
 });
 
 export default rootReducer;

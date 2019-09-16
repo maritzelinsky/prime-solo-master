@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 
 class Scheduler extends Component {
     componentDidMount() {
-        this.props.dispatch({ type: 'FETCH_TEAMS' })
+        this.props.dispatch({ type: 'FETCH_TEAMS' });
+        this.props.dispatch({ type: 'FETCH_TIME_SLOTS' });
+        this.props.dispatch({ type: 'FETCH_ASSIGNMENTS'});
     }
 
     state = {
@@ -28,6 +30,31 @@ class Scheduler extends Component {
                         )
                     })}
                 </select>
+                <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Assigned Team(s)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.props.state.schedulerReducer.map(assignment => {
+                            return (
+                                <tr key={assignment.assignments}>
+                                    <td>{assignment.date}</td>
+                                    <td>{assignment.start_time}</td>
+                                    <td>{assignment.end_time}</td>
+                                    <td>{assignment.name}</td>
+                                    <button>assign team</button>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table> 
+                </div>
             </div>
         )
     }

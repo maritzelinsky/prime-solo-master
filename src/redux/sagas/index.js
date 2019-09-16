@@ -9,6 +9,7 @@ import addTeamSaga from './addTeamSaga';
 import addTimeSlotSaga from './addTimeSlotSaga';
 import deleteTeamSaga from './deleteTeamSaga';
 import timeSlotsSaga from './timeSlotsSaga';
+import schedulerSaga from './schedulerSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -29,5 +30,6 @@ export default function* rootSaga() {
     addTimeSlotSaga(),
     deleteTeamSaga(),
     timeSlotsSaga(),
+    schedulerSaga(),
   ]);
 }
