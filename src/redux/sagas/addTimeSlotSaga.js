@@ -10,7 +10,7 @@ function* addTimeSlot(action) {
 
         yield axios.post('api/timeslots/', action.payload, config);
         yield put ({
-            type: 'SET_TIME_SLOTs'
+            type: 'SET_TIME_SLOTS'
         })
     } catch (error) {
         console.log('add time slot post request failed', error);

@@ -36,12 +36,12 @@ class TeamDetails extends Component {
                             console.log("TEAM IN TEAM DETAILS", team);
                             return (
                                 <td key={team.details}>
-                                <tr>{team.name}</tr>
-                                <tr>{team.contact}</tr>
-                                <tr>{team.email}</tr>
-                                <tr>{team.phone_number}</tr>
-                                <button onClick={() => this.handleEditClick(team.id)}>edit</button>
-                                <button onClick={() => this.handleDeleteClick(team.id)}>delete</button>
+                                    <tr>{team.name}</tr>
+                                    <tr>{team.contact}</tr>
+                                    <tr>{team.email}</tr>
+                                    <tr>{team.phone_number}</tr>
+                                    <button onClick={() => this.handleEditClick(team.id)}>edit</button>
+                                    <button onClick={() => this.handleDeleteClick(team.id)}>delete</button>
                                 </td>
                             )
                         })}

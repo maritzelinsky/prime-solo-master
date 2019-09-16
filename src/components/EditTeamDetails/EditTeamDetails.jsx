@@ -6,10 +6,12 @@ import { connect } from 'react-redux';
 class EditTeamDetails extends Component {
     
     state = {
-        name: this.props.state.name,
-        contact: this.props.state.contact,
-        email: this.props.state.email,
-        phone_number: this.props.state.email_number
+        editDetails: {
+            name: this.props.state.name,
+            contact: this.props.state.contact,
+            email: this.props.state.email,
+            phone_number: this.props.state.email_number
+        }
     }
 
     componentDidMount = (id) => {
@@ -22,6 +24,15 @@ class EditTeamDetails extends Component {
 
     handleCancelClick = (id) => {
         this.props.history.push(`/details/${id}`);
+    }
+
+    handleChange = (propertyName, event) => {
+        this.setState({
+            editDetails: {
+                ...this.state.editDetails,
+                [propertyName]: event.target.value,
+            }
+        })
     }
 
     render() {
@@ -38,10 +49,10 @@ class EditTeamDetails extends Component {
                         {this.props.state.teamsReducer && this.props.state.teamDetailsReducer.map(team => {
                             return (
                                 <td key={team.details}>
-                                    <tr><input value={team.name}/></tr>
-                                    <tr><input value={team.contact}/></tr>
-                                    <tr><input value={team.email}/></tr>
-                                    <tr><input value={team.phone_number}/></tr>
+                                    <tr><input value={team.name} onChange={(event) => this.handleChange('name', event)}/></tr>
+                                    <tr><input value={team.contact} onChange={(event) => this.handleChange('contact', event)}/></tr>
+                                    <tr><input value={team.email} onChange={(event) => this.handleChange('email', event)}/></tr>
+                                    <tr><input value={team.phone_number} onChange={(event) => this.handleChange('phone_number', event)}/></tr>
                                     <button>save</button>
                                     <button onClick={() => this.handleCancelClick(team.id)}>cancel</button>
                                 </td>
