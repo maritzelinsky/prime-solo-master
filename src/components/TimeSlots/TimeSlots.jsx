@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 class TimeSlots extends Component {
+    componentDidMount() {
+        this.props.dispatch({ type: 'FETCH_TIME_SLOTS'})
+    }
+    
     state = {
         newTimeSlot: {
             date: '',
@@ -22,7 +26,7 @@ class TimeSlots extends Component {
     handleAddTimeSlotClick = (event, id) => {
         event.preventDefault();
         this.props.dispatch({
-            type: 'ADD_TIME_SLOTS',
+            type: 'ADD_TIME_SLOT',
             payload: this.state.newTimeSlot
         })
         this.setState({
@@ -42,6 +46,27 @@ class TimeSlots extends Component {
             <input placeholder="start time" onChange={(event) => this.handleChange('start_time', event)}/>
             <input placeholder="end time" onChange={(event) => this.handleChange('end_time', event)}/>
             <button onClick={this.handleAddTimeSlotClick}>Add Time Slot</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        {this.props.state.timeSlotReducer.map(timeSlot => {
+                            return (
+                                <tr key={timeSlot.time}>
+                                <td>{timeSlot.date}</td>
+                                <td>{timeSlot.start_time}</td>
+                                <td>{timeSlot.end_time}</td>
+                                </tr>
+                            )
+                        })}
+                    
+                </tbody>
+            </table>
             </div>
         )
     }

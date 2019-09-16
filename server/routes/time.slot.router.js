@@ -1,12 +1,12 @@
-const express = required('express');
-const { rejectUnauthentiicated } = require('../modules/authentication-middleware');
+const express = require('express');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 
 const router = express.Router();
 
-router.post('/', rejectUnauthentiicated, (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     newTimeSlot = req.body;
-    const queryText = `INSERT INTO "time_slots" ("date", "start_time", "end_time") VALUES ($1, $2, $3, $4)`;
+    const queryText = `INSERT INTO "time_slots" ("date", "start_time", "end_time") VALUES ($1, $2, $3);`;
     const queryValues = [
         newTimeSlot.date,
         newTimeSlot.start_time,

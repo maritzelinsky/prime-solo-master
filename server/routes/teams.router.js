@@ -36,7 +36,7 @@ router.get('/edit/:id', rejectUnauthenticated, (req, res) => {
     pool.query(queryText, [detailsId])
         .then(results => res.send(results.rows)
             .catch(error => {
-                console.log('error in GET teams details', error)
+                console.log('error in GET edit teams details', error)
                 res.sendStatus(500);
             }));
 });
@@ -57,7 +57,19 @@ router.post('/', rejectUnauthenticated, (req, res) => {
         .then(() => {
             res.sendStatus(201);
         })
-        .catch((error) => {
+        .catch(error => {
+            console.log('error in add teams POST', error);
+        })
+});
+
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+    let deleteId = req.params.id
+    const queryText = `DELETE FROM "teams" WHERE "teams".id = $1`
+    pool.query(queryText, [deleteId])
+        .then(() => {
+            res.sendStatus(201);
+        })
+        .catch(error => {
             console.log(error);
         })
 });

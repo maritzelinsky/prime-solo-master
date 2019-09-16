@@ -14,6 +14,13 @@ class TeamDetails extends Component {
         this.props.history.push(`/edit/${id}`);
     }
 
+    handleDeleteClick = (id) => {
+        this.props.dispatch({
+            type: 'DELETE_TEAM',
+            payload: this.props.match.params.id
+        })
+    }
+
     render() {
         return (
             <div>
@@ -34,6 +41,7 @@ class TeamDetails extends Component {
                                 <tr>{team.email}</tr>
                                 <tr>{team.phone_number}</tr>
                                 <button onClick={() => this.handleEditClick(team.id)}>edit</button>
+                                <button onClick={() => this.handleDeleteClick(team.id)}>delete</button>
                                 </td>
                             )
                         })}
