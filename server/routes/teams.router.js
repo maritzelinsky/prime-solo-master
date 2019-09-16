@@ -22,11 +22,11 @@ router.get('/details/:id', rejectUnauthenticated, (req, res) => {
     console.log(detailsId);
     const queryText = `SELECT * FROM "teams" WHERE "teams".id = $1 GROUP BY "teams".id`
     pool.query(queryText, [detailsId])
-        .then(results => res.send(results.rows)
+        .then(results => res.send(results.rows))
         .catch(error => {
             console.log('error in GET teams details', error)
             res.sendStatus(500);
-        }));
+        });
 });
 
 router.get('/edit/:id', rejectUnauthenticated, (req, res) => {

@@ -57,11 +57,11 @@ class TimeSlots extends Component {
                 <tbody>
                         {this.props.state.timeSlotsReducer.map(timeSlot => {
                             return (
-                                <td key={timeSlot.time}>
-                                    <tr>{timeSlot.date}</tr>
-                                    <tr>{timeSlot.start_time}</tr>
-                                    <tr>{timeSlot.end_time}</tr>
-                                </td>
+                                <tr key={timeSlot.time}>
+                                    <td>{timeSlot.date}</td>
+                                    <td>{timeSlot.start_time}</td>
+                                    <td>{timeSlot.end_time}</td>
+                                </tr>
                             )
                         })}
                 </tbody>

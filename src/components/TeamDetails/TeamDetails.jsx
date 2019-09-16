@@ -21,6 +21,10 @@ class TeamDetails extends Component {
         })
     }
 
+    handleBackToTeamsClick = () => {
+        this.props.history.push(`/teams`);
+    }
+
     render() {
         return (
             <div>
@@ -28,21 +32,25 @@ class TeamDetails extends Component {
                 <table>
                     <thead>
                         <tr>
-                            <th>Team </th> 
+                            <th>Team</th> 
+                            <th>Contact</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
                         </tr>
                     </thead>
                     <tbody>
                         {this.props.state.teamsReducer && this.props.state.teamDetailsReducer.map(team => {
                             console.log("TEAM IN TEAM DETAILS", team);
                             return (
-                                <td key={team.details}>
-                                    <tr>{team.name}</tr>
-                                    <tr>{team.contact}</tr>
-                                    <tr>{team.email}</tr>
-                                    <tr>{team.phone_number}</tr>
+                                <tr key={team.details}>
+                                    <td>{team.name}</td>
+                                    <td>{team.contact}</td>
+                                    <td>{team.email}</td>
+                                    <td>{team.phone_number}</td>
                                     <button onClick={() => this.handleEditClick(team.id)}>edit</button>
                                     <button onClick={() => this.handleDeleteClick(team.id)}>delete</button>
-                                </td>
+                                    <button onClick={this.handleBackToTeamsClick}>back to teams</button>
+                                </tr>
                             )
                         })}
                     </tbody>
