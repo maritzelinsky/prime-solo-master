@@ -11,6 +11,7 @@ import deleteTeamSaga from './deleteTeamSaga';
 import timeSlotsSaga from './timeSlotsSaga';
 import schedulerSaga from './schedulerSaga';
 import assignTeamSaga from './assignTeamsSaga';
+import updateTeamSaga from './updateTeamSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -33,5 +34,6 @@ export default function* rootSaga() {
     timeSlotsSaga(),
     schedulerSaga(),
     assignTeamSaga(),
+    updateTeamSaga(),
   ]);
 }

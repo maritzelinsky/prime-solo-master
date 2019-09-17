@@ -10,6 +10,12 @@ class EditTeamDetails extends Component {
     //     console.log('team details mount', this.props.match.params.id)
     // }
 
+    handleSaveClick = () => {
+        this.props.dispatch({
+            type: 'UPDATE_TEAM_DETAILS',
+            payload: this.props.state.editTeamDetailsReducer
+        })
+    }
     
     handleCancelClick = (id) => {
         this.props.history.push(`/details/${id}`);
@@ -40,10 +46,37 @@ class EditTeamDetails extends Component {
                             <tr>
                                 <input value={this.props.state.editTeamDetailsReducer.name} onChange={(event) => 
                                     this.props.dispatch({
-                                        type: 'EDIT_DETAIL_CONTACT', 
+                                        type: 'EDIT_DETAIL_NAME', 
                                         payload: event.target.value
                                         })
                                     }
+                                />
+                            </tr>
+                            <tr>
+                                <input value={this.props.state.editTeamDetailsReducer.contact} onChange={(event) =>
+                                    this.props.dispatch({
+                                        type: 'EDIT_DETAIL_CONTACT',
+                                        payload: event.target.value
+                                    })
+                                }
+                                />
+                            </tr>
+                            <tr>
+                                <input value={this.props.state.editTeamDetailsReducer.email} onChange={(event) =>
+                                    this.props.dispatch({
+                                        type: 'EDIT_DETAIL_EMAIL',
+                                        payload: event.target.value
+                                    })
+                                }
+                                />
+                            </tr>
+                            <tr>
+                                <input value={this.props.state.editTeamDetailsReducer.phone_number} onChange={(event) =>
+                                    this.props.dispatch({
+                                        type: 'EDIT_DETAIL_PHONE_NUMBER',
+                                        payload: event.target.value
+                                    })
+                                }
                                 />
                             </tr>
                             {/* <tr><input value={this.props.state.teamDetailsReducer.email} /></tr>

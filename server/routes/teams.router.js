@@ -74,4 +74,25 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
         })
 });
 
+router.put('/details/:id', rejectUnauthenticated, (req, res) => {
+    let updateTeamDetails = req.body
+    console.log('PUT req.params', req.body)
+    const queryText = `UPDATE "teams" SET "name" = $1, "contact" = $2, "email" = $3, "phone_number" = $4 WHERE "id" = $5;`
+    const queryValues = [
+        updateTeamDetails.name,
+        updateTeamDetails.contact,
+        updateTeamDetails.email,
+        updateTeamDetails.phone_number,
+        updateTeamDetails.id
+    ];
+    console.log(queryValues);
+    pool.query(queryText, queryValues)
+        .then(() => {
+            res.sendStatus(201);
+        })
+        .catch(error => {
+            console.log('error in add teams POST', error);
+        })
+});
+
 module.exports = router;
