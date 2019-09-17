@@ -13,7 +13,7 @@ class TeamDetails extends Component {
     handleEditClick = (id) =>  {
         this.props.dispatch({
             type: 'TEAM_DETAILS_TO_EDIT',
-            payload: this.props.state.teamDetailsReducer
+            payload: this.props.state.teamDetailsReducer[0]
         })
         this.props.history.push(`/edit/${id}`);
     }
