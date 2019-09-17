@@ -34,18 +34,18 @@ router.get('/edit/:id', rejectUnauthenticated, (req, res) => {
     console.log(detailsId);
     const queryText = `SELECT * FROM "teams" WHERE "teams".id = $1 GROUP BY "teams".id`
     pool.query(queryText, [detailsId])
-        .then(results => res.send(results.rows)
+        .then(results => res.send(results.rows))
             .catch(error => {
                 console.log('error in GET edit teams details', error)
                 res.sendStatus(500);
-            }));
+            });
 });
 
 /**
  * POST route template
  */
 router.post('/', rejectUnauthenticated, (req, res) => {
-    newTeamDetails = req.body;
+    let newTeamDetails = req.body;
     const queryText = `INSERT INTO "teams" ("name", "contact", "email", "phone_number") VALUES ($1, $2, $3, $4)`;
     const queryValues = [
         newTeamDetails.name,

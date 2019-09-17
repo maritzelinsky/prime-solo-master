@@ -15,7 +15,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 router.post('/', rejectUnauthenticated, (req, res) => {
-    newTimeSlot = req.body;
+    let newTimeSlot = req.body;
     const queryText = `INSERT INTO "time_slots" ("date", "start_time", "end_time") VALUES ($1, $2, $3);`;
     const queryValues = [
         newTimeSlot.date,
