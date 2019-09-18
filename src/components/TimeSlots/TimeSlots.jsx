@@ -38,6 +38,13 @@ class TimeSlots extends Component {
         })
     }
 
+    handleDeleteTimeSlotClick = (id) => {
+        this.props.dispatch({
+            type: 'DELETE_TIME_SLOT',
+            payload: id
+        })
+    }
+
     render() {
         return (
             <div>
@@ -61,6 +68,7 @@ class TimeSlots extends Component {
                                     <td>{timeSlot.date}</td>
                                     <td>{timeSlot.start_time}</td>
                                     <td>{timeSlot.end_time}</td>
+                                    <td><button onClick={() => this.handleDeleteTimeSlotClick(timeSlot.id)}>delete</button></td>
                                 </tr>
                             )
                         })}

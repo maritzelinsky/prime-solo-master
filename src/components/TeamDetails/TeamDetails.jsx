@@ -10,7 +10,7 @@ class TeamDetails extends Component {
         console.log('team edit details mount', this.props.match.params.id)
     }
 
-    handleEditClick = (id) =>  {
+    handleEditTeamClick = (id) =>  {
         this.props.dispatch({
             type: 'TEAM_DETAILS_TO_EDIT',
             payload: this.props.state.teamDetailsReducer[0]
@@ -18,11 +18,12 @@ class TeamDetails extends Component {
         this.props.history.push(`/edit/${id}`);
     }
 
-    handleDeleteClick = (id) => {
+    handleDeleteTeamClick = () => {
         this.props.dispatch({
             type: 'DELETE_TEAM',
             payload: this.props.match.params.id
         })
+        this.props.history.push(`/teams`);
     }
 
     handleBackToTeamsClick = () => {
@@ -51,8 +52,8 @@ class TeamDetails extends Component {
                                     <td>{team.contact}</td>
                                     <td>{team.email}</td>
                                     <td>{team.phone_number}</td>
-                                    <button onClick={() => this.handleEditClick(team.id)}>edit</button>
-                                    <button onClick={() => this.handleDeleteClick(team.id)}>delete</button>
+                                    <button onClick={() => this.handleEditTeamClick(team.id)}>edit</button>
+                                    <button onClick={() => this.handleDeleteTeamClick(team.id)}>delete</button>
                                     <button onClick={this.handleBackToTeamsClick}>back to teams</button>
                                 </tr>
                             )

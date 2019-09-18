@@ -31,4 +31,18 @@ router.post('/', rejectUnauthenticated, (req, res) => {
         })
 });
 
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+    let deleteId = req.params.id
+    console.log(req.params.id)
+    console.log(deleteId)
+    const queryText = `DELETE FROM "time_slots" WHERE "time_slots".id = $1`
+    pool.query(queryText, [deleteId])
+        .then(() => {
+            res.sendStatus(201);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+});
+
 module.exports = router;

@@ -13,7 +13,7 @@ function* deleteTeam(action) {
             type: 'FETCH_TEAMS'
         })
     } catch (error) {
-        console.log('add team post request failed', error)
+        console.log('delete team request failed', error)
     }
 }
 

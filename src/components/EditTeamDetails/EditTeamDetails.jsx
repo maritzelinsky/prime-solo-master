@@ -10,11 +10,12 @@ class EditTeamDetails extends Component {
     //     console.log('team details mount', this.props.match.params.id)
     // }
 
+
     handleSaveClick = () => {
         this.props.dispatch({
             type: 'UPDATE_TEAM_DETAILS',
             payload: this.props.state.editTeamDetailsReducer
-        })
+        });
     }
     
     handleCancelClick = (id) => {

@@ -14,8 +14,5 @@ const editTeamDetailsReducer = (state = {}, action) => {
             return state;
     }
 };
-//CREATE CASE FOR EACH ITEM
 
-// user will be on the redux state at:
-// state.user
 export default editTeamDetailsReducer;
