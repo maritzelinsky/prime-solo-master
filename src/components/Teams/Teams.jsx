@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import './Teams.css';
+
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Button from '@material-ui/core/Button';
+
 class Teams extends Component {
     componentDidMount() {
         this.props.dispatch({ type: 'FETCH_TEAMS' })
@@ -16,22 +25,28 @@ class Teams extends Component {
     
     render () {
         return (
-            <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Team</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div class="container">
+                <h2>Teams</h2>
+                <Button variant="outlined" color="inherit" onClick={this.handleAddTeamClick}>add team</Button>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Team</TableCell>
+                        <TableCell>More</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
                         {this.props.state.teamsReducer && this.props.state.teamsReducer.map(team => {
                             return (
-                                <tr key={team.name}>{team.name}<button onClick={() => this.handleDetailsClick(team.id)}>more details</button></tr>
+                                <TableRow key ={team.name}>
+                                <TableCell>{team.name}</TableCell>
+                                    <TableCell><Button variant="outlined" color="inherit" onClick={() => this.handleDetailsClick(team.id)}>more details</Button></TableCell>
+                                </TableRow>
                             )
                         })}
-                </tbody>
-            </table>
-            <button onClick={this.handleAddTeamClick}>add team</button>
+                </TableBody>
+            </Table>
+                
             </div>
         )
     }

@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import './TeamDetails.css';
+
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Button from '@material-ui/core/Button';
+
 class TeamDetails extends Component {
     componentDidMount = () => {
         this.props.dispatch({
@@ -31,35 +40,39 @@ class TeamDetails extends Component {
     }
 
     render() {
+        
         return (
-            <div>
-                <h1>Team Details</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Team</th> 
-                            <th>Contact</th>
-                            <th>Email</th>
-                            <th>Phone Number</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            <div class="container"> 
+                <h2>Team Details</h2>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Team</TableCell> 
+                            <TableCell>Contact</TableCell>
+                            <TableCell>Email</TableCell>
+                            <TableCell>Phone Number</TableCell>
+                            <TableCell>Edit</TableCell>
+                            <TableCell>Delete</TableCell>
+                            <TableCell>Back</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
                         {this.props.state.teamsReducer && this.props.state.teamDetailsReducer.map(team => {
                             console.log("TEAM IN TEAM DETAILS", team);
                             return (
-                                <tr key={team.details}>
-                                    <td>{team.name}</td>
-                                    <td>{team.contact}</td>
-                                    <td>{team.email}</td>
-                                    <td>{team.phone_number}</td>
-                                    <button onClick={() => this.handleEditTeamClick(team.id)}>edit</button>
-                                    <button onClick={() => this.handleDeleteTeamClick(team.id)}>delete</button>
-                                    <button onClick={this.handleBackToTeamsClick}>back to teams</button>
-                                </tr>
+                                <TableRow key={team.details}>
+                                    <TableCell>{team.name}</TableCell>
+                                    <TableCell>{team.contact}</TableCell>
+                                    <TableCell>{team.email}</TableCell>
+                                    <TableCell>{team.phone_number}</TableCell>
+                                    <TableCell><Button variant="outlined" color="inherit" onClick={() => this.handleEditTeamClick(team.id)}>edit</Button></TableCell>
+                                    <TableCell><Button variant="outlined" color="inherit" onClick={() => this.handleDeleteTeamClick(team.id)}>delete</Button></TableCell>
+                                    <TableCell><Button variant="outlined" color="inherit" onClick={this.handleBackToTeamsClick}>back to teams</Button></TableCell>
+                                </TableRow>
                             )
                         })}
-                    </tbody>
-                </table>
+                    </TableBody>
+                </Table>
             </div>
         )
     }

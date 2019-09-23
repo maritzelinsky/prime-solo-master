@@ -5,7 +5,8 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 router.get('/', rejectUnauthenticated, (req, res) => {
-    const queryText = `SELECT * FROM "time_slots" GROUP BY "id";`
+    const queryText = `SELECT "time_slots".id, "time_slots".date, CONCAT ("time_slots".date,':', "time_slots".start_time) AS "start", CONCAT ("time_slots".date, ';', "time_slots".end_time) AS "end" FROM "time_slots"
+GROUP BY "time_slots".id;`
     pool.query(queryText)
         .then((results) => { res.send(results.rows) })
         .catch(error => {

@@ -1,5 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
+
+import './Scheduler.css';
+
+import { withStyles } from '@material-ui/core/styles';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Button from '@material-ui/core/Button';
+
+
+const styles = {
+    select: {
+        margin: '20px',
+    }
+}
+
 
 class Scheduler extends Component {
     componentDidMount() {
@@ -9,7 +31,8 @@ class Scheduler extends Component {
 
     state = {
         selectedTeam: {
-            id: ''
+            id: '',
+            name:'',
         }
     }
 
@@ -34,40 +57,43 @@ class Scheduler extends Component {
 
     render () {
         return (
-            <div>
-                <h1>Scheduler</h1>
-                <p>{JSON.stringify(this.props.state.schedulerReducer)}</p>
-                <select onChange={(event) => this.handleChange(event)}>
+            <div class="container">
+                <h2>Scheduler</h2>
+                {/* <p>{JSON.stringify(this.props.state.schedulerReducer)}</p> */}
+                <InputLabel htmlFor="age-simple">Selected Team</InputLabel>
+                <Select value={this.state.selectedTeam.id} onChange={(event) => this.handleChange(event)}>
                 {this.props.state.teamsReducer && this.props.state.teamsReducer.map(team => {
                     return (
-                        <option value={team.id} key={team.name}>{team.name}</option>
+                        <MenuItem value={team.id} key={team.name}>{team.name}</MenuItem>
                         )
                     })}
-                </select>
+                </Select>
                 <div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Start Time</th>
-                            <th>End Time</th>
-                            <th>Assigned Team(s)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Date</TableCell>
+                            <TableCell>Start Time</TableCell>
+                            <TableCell>End Time</TableCell>
+                            <TableCell>Assigned Team</TableCell>
+                            <TableCell>ASSIGN</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
                         {this.props.state.schedulerReducer.map(assignment => {
                             return (
-                                <tr key={assignment.id}>
-                                    <td>{assignment.date}</td>
-                                    <td>{assignment.start_time}</td>
-                                    <td>{assignment.end_time}</td>
-                                    <td>{assignment.name}</td>
-                                    <button onClick={() => this.handleAssignTeamClick(assignment.id)}>assign team</button>
-                                </tr>
+                                <TableRow key={assignment.id}>
+                                    <TableCell>{moment(assignment.date).format('MM/DD/YYYY')}</TableCell>
+                                    <TableCell>{moment(assignment.start).format('LT')}</TableCell>
+                                    <TableCell>{moment(assignment.end).format('LT')}</TableCell>
+                                    <TableCell>{assignment.name}</TableCell>
+                                    <TableCell><Button variant="outlined" color="inherit" onClick={() => this.handleAssignTeamClick(assignment.id)}>assign team</Button></TableCell> 
+                                </TableRow>
                             )
                         })}
-                    </tbody>
-                </table> 
+                    </TableBody>
+                </Table>
                 </div>
             </div>
         )
@@ -78,4 +104,4 @@ const mapStateToProps = state => ({
     state
 });
 
-export default connect(mapStateToProps)(Scheduler);
+export default connect(mapStateToProps)(withStyles(styles)(Scheduler));

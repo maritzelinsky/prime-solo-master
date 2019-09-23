@@ -8,7 +8,7 @@ const router = express.Router();
  * GET route template
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
-    const queryText = `SELECT * FROM "teams" GROUP BY "id";`
+    const queryText = `SELECT * FROM "teams" GROUP BY "id" ORDER BY "name";`
     pool.query(queryText)
         .then((results) => {res.send(results.rows)})
         .catch(error => {
